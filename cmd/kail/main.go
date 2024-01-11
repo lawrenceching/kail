@@ -348,6 +348,8 @@ func streamLogs(controller kail.Controller) {
 		zerolog.MessageFieldName = *flagZerologMessageFieldName
 		zerolog.ErrorFieldName = *flagZerologErrorFieldName
 		writer = writers.NewZerologWriter(os.Stdout)
+	case "file":
+		writer = writers.NewFileWriter(context.Background())
 	default:
 		kingpin.Fatalf("Invalid output: '%v'", *flagOutput)
 	}
